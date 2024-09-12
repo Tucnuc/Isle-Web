@@ -1,0 +1,46 @@
+div {
+    position: absolute;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+img {
+    position: absolute;
+}
+.itemGlow {
+    z-index: 1;
+    opacity: 0;
+}
+
+.null {
+    width: 0;
+    height: 0;
+}
+
+.flashlight {
+    bottom: 34%;
+    left: 33%;
+}
+.flashlightImg {
+    width: 60px;
+}
+.flashlightGlow {
+    width: 62px;
+}
+
+.guardsHelmet {
+    bottom: 34.4%;
+    left: 50%;
+}
+.guardsHelmetImg {
+    width: 66.5px;
+}
+.guardsHelmetGlow {
+    width: 68.5px;
+}
+
+.revolver {
+    left: 45%;
+    bottom: 48%;
+}

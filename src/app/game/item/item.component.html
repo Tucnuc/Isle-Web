@@ -1,0 +1,4 @@
+<div [ngClass]="itemId" (mouseenter)="mouseEntered()" (mouseleave)="mouseLeft()">
+    <img class="itemPicture" [ngClass]="itemId + 'Img'" [src]="itemImg">
+    <img class="itemGlow" [ngClass]="itemId + 'Glow'" [src]="itemGlow" [@glowHandler]="animationState">
+</div>

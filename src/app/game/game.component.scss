@@ -1,0 +1,17 @@
+.gogglesBtn {
+    z-index: 1;
+    position: absolute;
+    cursor: pointer;
+    bottom: 40%;
+    left: 30%;
+}
+
+.downBtn {
+    position: absolute;
+    z-index: 1;
+    cursor: pointer;
+    bottom: 0;
+    height: 40px;
+    width: 100px;
+    left: calc(50% - 50px);
+}

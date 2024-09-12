@@ -1,0 +1,5 @@
+<div class="container">
+    <div class="button-container" *ngFor="let option of locationData.options; let i = index" [attr.data-location]="option" [ngClass]="locationData.id">
+        <button class="arrowBtn" (click)="optionClicked(option)">{{ locationData.optionsNames[i] }}</button>
+    </div>
+</div>

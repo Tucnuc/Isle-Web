@@ -1,0 +1,33 @@
+.con {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+img {
+    position: absolute;
+    z-index: 10;
+    margin: 10px;
+}
+
+.locationNameSvg {
+    left: 50%;
+    transform: translateX(-50%);
+    height: 100px;
+}
+
+.decor1 {
+    right: 0;
+    width: 100px;
+}
+.decor2 {
+    bottom: 0;
+    height: 100px;
+}
+.decor3 {
+    bottom: 0;
+    right: 0;
+    height: 50px;
+}
+.decor4 {
+    height: 150px;
+}

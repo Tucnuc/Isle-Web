@@ -1,0 +1,10 @@
+<app-background [backgroundImg]="img"></app-background>
+<app-blur [blurActivator]="blurValue"></app-blur>
+
+<button *ngIf="!areGogglesVisible && !gottenGoggles" class="downBtn" (click)="gettingGoggles()">DOWN</button>
+<img *ngIf="areGogglesVisible" ngSrc="./images/goggles.png" (click)="gotGoggles()" class="gogglesBtn" width="179.3" height="71.5">
+<app-interface *ngIf="isInterfaceEnabled" [currentTexts]="currentTexts"></app-interface>
+<app-arrow *ngIf="isInterfaceEnabled" [locationData]="optionsList" (locationSelected)="selectionHandler($event)"></app-arrow>
+<app-item [selectedItem]="currentItem"></app-item>
+
+<router-outlet />
