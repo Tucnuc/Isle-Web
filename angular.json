@@ -17,6 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
+            "baseHref": "/Isle-Web/",
             "outputPath": "dist/isle-web",
             "index": "src/index.html",
             "browser": "src/main.ts",
