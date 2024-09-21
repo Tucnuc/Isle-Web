@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, SimpleChanges, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
-import { trigger, state, style, animate, transition } from '@angular/animations';
-import { NgClass } from '@angular/common';
+import { trigger, state, style, animate, transition} from '@angular/animations';
+import { NgClass, NgStyle } from '@angular/common';
 
 interface DataList {
   [key: string]: any;
@@ -9,7 +9,7 @@ interface DataList {
 @Component({
   selector: 'app-item',
   standalone: true,
-  imports: [NgClass],
+  imports: [NgClass, NgStyle],
   templateUrl: './item.component.html',
   styleUrl: './item.component.scss',
   animations: [
@@ -29,24 +29,13 @@ interface DataList {
       transition('appear <=> disappear', animate('1s ease-in-out')),
     ]),
 
-    trigger('descriptionAnimation', [
-      state(
-        'appear',
-        style({
-          opacity: 1,
-          zIndex: 1,
-        }),
-      ),
-      state(
-        'disappear',
-        style({
-          opacity: 0,
-          zIndex: -1,
-        }),
-      ),
-      transition('appear <=> disappear', animate('500ms ease-in-out'))
+    trigger('partFadeInOut', [
+      state('appear', style({ opacity: 1 })),
+      state('disappear', style({ opacity: 0 })),
+      transition('appear <=> disappear', [
+        animate('{{ duration }}ms {{ delay }}ms ease-in-out')
+      ])
     ]),
-
   ]
 
 })
@@ -121,30 +110,25 @@ export class ItemComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {}
 
-  imgSrc = '';
   descriptionClass = '';
-  descriptionAnimationState = 'disappear';
+  descriptionSvgAnimationState = 'disappear'
+  transformStyle = '';
 
   descriptionHandler() {
       const rect = this.itemContainer.nativeElement.getBoundingClientRect();
       const leftPercent = (rect.left / window.innerWidth) * 100;
       const bottomPercent = ((window.innerHeight - rect.bottom) / window.innerHeight) * 100;
 
-      this.imgSrc = './svgs/itemDescription';
       this.descriptionClass = '';
 
       if (leftPercent < 50) {
-        this.imgSrc += 'Right';
         this.descriptionClass += 'Right';
       } else {
-        this.imgSrc += 'Left';
         this.descriptionClass += 'Left';
       }
       if (bottomPercent < 50) {
-        this.imgSrc += 'Up';
         this.descriptionClass += 'Up';
       } else {
-        this.imgSrc += 'Down';
         this.descriptionClass += 'Up';
       }
 
@@ -153,19 +137,27 @@ export class ItemComponent implements AfterViewInit {
       if (this.descriptionClass === 'RightUp') {
         descriptionCon.style.top = `${rect.top - 400}px`;
         descriptionCon.style.left = `${rect.left}px`;
+        this.transformStyle = 'rotate(0deg) scaleX(1)';
+
       } else if (this.descriptionClass === 'LeftUp') {
         descriptionCon.style.top = `${rect.top - 400}px`;
         descriptionCon.style.left = `${rect.left - 620.25}px`;
+        this.transformStyle = 'rotate(0deg) scaleX(-1)';
+
       } else if (this.descriptionClass === 'RightDown') {
         descriptionCon.style.top = `${rect.top}px`;
         descriptionCon.style.left = `${rect.left}px`;
+        this.transformStyle = 'rotate(180deg) scaleX(1)';
+
       } else if (this.descriptionClass === 'LeftDown') {
         descriptionCon.style.top = `${rect.top}px`;
         descriptionCon.style.left = `${rect.left - 620.25}px`;
+        this.transformStyle = 'rotate(180deg) scaleX(-1)';
+
       }
 
-      this.imgSrc += '.svg';
-      this.descriptionAnimationState = 'appear';
+      descriptionCon.style.zIndex = 1;
+      this.descriptionSvgAnimationState = 'appear'
   }
   
   mouseEntered() {
@@ -173,20 +165,15 @@ export class ItemComponent implements AfterViewInit {
     this.animationInterval = setInterval(() => {
       this.animationState = this.animationState === 'appear' ? 'disappear' : 'appear';
     }, 1000);
-    this.descriptionHandler()
+    this.descriptionHandler();
   }
   mouseLeft() {
     clearInterval(this.animationInterval);
     this.animationState = 'disappear';
-    this.descriptionAnimationState = 'disappear';
+    this.descriptionSvgAnimationState = 'disappear';
+    setTimeout(() => {
+      this.descriptionCon.nativeElement.style.zIndex = -1;
+    }, 500);
   }
-
-
-
-
-
-
-
-
 
 }

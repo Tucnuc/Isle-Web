@@ -57,16 +57,13 @@ img {
     align-items: center;
     height: 399.98px;
     width: 620.250px;
-    opacity: 0;
     z-index: -1;
     display: flex;
     pointer-events: none;
 }
 
-.descriptionCon svg {
+.SVG {
     position: absolute;
-    display: flex;
-
 }
 
 .textCon {
