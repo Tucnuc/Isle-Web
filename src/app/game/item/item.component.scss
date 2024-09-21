@@ -1,10 +1,11 @@
-div {
+#itemCon {
     position: absolute;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 img {
     position: absolute;
 }
@@ -43,4 +44,70 @@ img {
 .revolver {
     left: 45%;
     bottom: 48%;
+}
+
+
+@font-face {
+    font-family: montserrat;
+    src: url('/fonts/Montserrat.ttf');
+}
+
+.descriptionCon {
+    position: absolute;
+    align-items: center;
+    height: 399.98px;
+    width: 620.250px;
+    opacity: 0;
+    z-index: -1;
+    display: flex;
+    pointer-events: none;
+}
+
+.descriptionCon svg {
+    position: absolute;
+    display: flex;
+
+}
+
+.textCon {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 270px;
+    align-items: center;
+}
+
+// .LeftUp {
+
+// }
+.LeftDown {
+    left: 90px;
+}
+.RightUp {
+    left: 250px;
+    top: 125px;
+}
+// .RightDown {
+
+// }
+
+
+
+.text {
+    text-overflow: clip;
+    text-align: center;
+}
+
+.heading {
+    font-size: xx-large;
+    margin-bottom: 10px;
+}
+
+.text {
+    font-size: larger;
+}
+
+p {
+    font-family: montserrat;
+    color: white;
 }

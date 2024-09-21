@@ -1,4 +1,11 @@
-<div [ngClass]="itemId" (mouseenter)="mouseEntered()" (mouseleave)="mouseLeft()">
+<div #itemCon id="itemCon" [ngClass]="itemId" (mouseenter)="mouseEntered()" (mouseleave)="mouseLeft()">
     <img class="itemPicture" [ngClass]="itemId + 'Img'" [src]="itemImg">
     <img class="itemGlow" [ngClass]="itemId + 'Glow'" [src]="itemGlow" [@glowHandler]="animationState">
+</div>
+<div #descriptionCon class="descriptionCon" [@descriptionAnimation]="descriptionAnimationState">
+    <img [src]="imgSrc">
+    <div class="textCon" [ngClass]="descriptionClass">
+        <p class="heading">{{ itemName }}</p>
+        <p class="text">{{ itemText }}</p>
+    </div>
 </div>
